@@ -1,12 +1,14 @@
 #!/usr/bin/env python
-import TelegramBotAPI
-import pytube
-import telebot
+
+from modules import pytube
+from modules import telebot
 import os
 
+
+
+
+
 bot = telebot.TeleBot('916677436:AAEbJdYesuKAMOWslIWJ-kq5_pgfBOpaAwU')
-
-
 
 @bot.message_handler(content_types=['text', 'video'])
 def get_text_messages(message):
