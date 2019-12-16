@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import TelegramBotAPI
-from pytube import YouTube
+import pytube
 import telebot
 import os
 
@@ -12,13 +12,15 @@ bot = telebot.TeleBot('916677436:AAEbJdYesuKAMOWslIWJ-kq5_pgfBOpaAwU')
 def get_text_messages(message):
     prov = 'https://youtu.be/'
     desc = 'https://www.youtube.com/watch?'
-    if prov[:30] or desc in message.text:
+    if prov in message.text and len(message.text)==28 or desc in message.text and len(message.text)==43:
         bot.send_message(message.from_user.id, "Ваше видео уже в пути!")
-        video_mp4 = YouTube(message.text).streams.first().download()
+        video_mp4 = pytube.YouTube(message.text).streams.first().download()
         p = os.path.abspath(video_mp4)
         p = p.replace("\\", "/")
         video = open(p, 'rb')
         bot.send_video(message.from_user.id, video)
+        video.close()
+        os.remove(p)
     elif message.text == "/help":
         bot.send_message(message.from_user.id, "Пока я только могу скачивать видео с ютуб")
     else:
