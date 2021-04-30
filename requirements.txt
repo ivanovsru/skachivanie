@@ -15,7 +15,7 @@ pyTelegramBotAPI==3.6.6
 requests==2.22.0
 six==1.13.0
 ujson==1.35
-urllib3==1.25.7
+urllib3==1.25.8
 virtualenv==16.7.9
 Werkzeug==0.16.0
 yarg==0.1.9
